@@ -4,22 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import project.school.entity.Topic;
 import project.school.repository.TopicRepository;
+import project.school.service.TopicService;
+
 import java.util.List;
 
 @RestController
 public class TopicController {
 
     @Autowired
-    private TopicRepository topicRepository;
+    private TopicService topicService;
 
     @GetMapping("/topics")
     @ResponseBody
     public List<Topic> getAllTopics() {
-        return topicRepository.findAll();
+        return topicService.getAllTopics();
     }
 
     @PostMapping("/topics")
     public void addTopic (@RequestBody Topic topic){
-        topicRepository.save(topic);
+        topicService.addTopic(topic);
     }
 }
