@@ -3,7 +3,7 @@ package project.school.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import project.school.entity.Answer;
-import project.school.repository.AnswerRepository;
+import project.school.service.AnswerService;
 
 import java.util.List;
 
@@ -11,17 +11,16 @@ import java.util.List;
 public class AnswerController {
 
     @Autowired
-    private AnswerRepository answerRepository;
+    private AnswerService answerService;
 
     @GetMapping("/answer")
     @ResponseBody
     public List<Answer> getAllAnswers() {
-        return answerRepository.findAll();
+        return answerService.getAllAnswers();
     }
 
     @PostMapping("answer")
     public void addAnswer(@RequestBody Answer answer) {
-        answerRepository.save(answer);
+        answerService.addAnswer(answer);
     }
-
 }
