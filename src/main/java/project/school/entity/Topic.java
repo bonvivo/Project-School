@@ -1,15 +1,19 @@
 package project.school.entity;
 
+import org.aspectj.weaver.patterns.TypePatternQuestions;
+
 import javax.persistence.*;
+import javax.security.auth.Subject;
+import java.util.List;
 
 @Entity
-@Table(name = "Topic")
+@Table(name = "topic")
 public class Topic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "topicID")
-    private long topic_ID;
+    @Column(name = "id_topic")
+    private long idTopic;
 
     @Column(name = "subject")
     private String subject;
@@ -17,15 +21,18 @@ public class Topic {
     @Column(name = "section")
     private String section;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Question> questionList;
+
     public Topic() {
     }
 
-    public long getTopic_ID() {
-        return topic_ID;
+    public long getIdTopic() {
+        return idTopic;
     }
 
-    public void setTopic_ID(long topic_ID) {
-        this.topic_ID = topic_ID;
+    public void setIdTopic(long idTopic) {
+        this.idTopic = idTopic;
     }
 
     public String getSubject() {
@@ -42,5 +49,13 @@ public class Topic {
 
     public void setSection(String section) {
         this.section = section;
+    }
+
+    public List<Question> getQuestionList() {
+        return questionList;
+    }
+
+    public void setQuestionList(List<Question> questionList) {
+        this.questionList = questionList;
     }
 }
