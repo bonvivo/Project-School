@@ -1,18 +1,9 @@
 package project.school.repository;
 
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import project.school.entity.Topic;
 
-import java.util.List;
-
-public interface TopicRepository {
-
-    void add(Topic topic);
-
-    void delete(long idTopic);
-
-    void update(String ID, Topic topic);
-
-    List<Topic> getAll();
+public interface TopicRepository extends JpaRepository<Topic, Long> {
 
 }
